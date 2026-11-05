@@ -26,18 +26,6 @@ img { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }
 a { color: inherit; }
 
-/* 입력이 필요한 자리 표시 (완성 후 삭제) */
-.todo {
-  display: inline-block;
-  background: #fff4cc;
-  border: 1px dashed #d1a300;
-  color: #7a5c00;
-  font-size: .85em;
-  padding: 0 .4em;
-  border-radius: 4px;
-}
-.todo::before { content: "✎ "; }
-
 /* 상단 메뉴 */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 10;
@@ -300,6 +288,9 @@ footer { text-align: center; font-size: .8rem; color: var(--muted); padding: 32p
 .mail-row .mail { margin-top: 0; }
 .copy { border: 1px solid var(--gold); color: var(--gold); padding: 4px 12px; border-radius: 999px; font-size: .85rem; }
 .copy:hover { background: var(--gold); color: #fff; }
+.contact-links { display: flex; gap: 20px; justify-content: center; margin-top: 14px; font-size: .92rem; }
+.contact-links a { color: var(--muted); }
+.contact-links a:hover { color: var(--gold); }
 /* 3·7. 맨 위로 */
 .to-top {
   position: fixed; z-index: 20;
@@ -548,4 +539,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 @media (max-width: 640px) {
   .phones button { border-width: 4px; border-radius: 16px; }
   .phones figure:nth-child(2) button, .phones figure:nth-child(2) button:hover { transform: none; }
+}
+
+/* 휴대폰: 로봇 셀 수치가 줄바꿈되지 않게 */
+.eng-stats b { white-space: nowrap; }
+@media (max-width: 640px) {
+  .eng-stats li { padding: 10px 4px; }
+  .eng-stats b { font-size: 1rem; }
 }
