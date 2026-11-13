@@ -65,3 +65,26 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// ── PDF·인쇄용 부록: 누르면 커지는 자료를 문서 끝에 크게 싣는다 (화면에서는 숨김)
+(() => {
+  const seen = new Set();
+  const sec = document.createElement('section');
+  sec.className = 'print-appendix';
+  sec.innerHTML = '<h2>부록 · 발표 자료와 상장 원본</h2><p>본문에서 작게 보이는 자료를 크게 실었습니다. PDF에서 확대해 볼 수 있습니다.</p>';
+  document.querySelectorAll('[data-img]').forEach((el) => {
+    const src = el.dataset.img;
+    if (seen.has(src) || /\.gif$/i.test(src)) return;
+    seen.add(src);
+    const fig = document.createElement('figure');
+    const img = new Image();
+    img.src = src;
+    img.alt = el.querySelector('img')?.alt || '';
+    img.addEventListener('load', () => { if (img.naturalHeight > img.naturalWidth) fig.classList.add('tall'); });
+    const cap = document.createElement('figcaption');
+    cap.textContent = img.alt || el.querySelector('span:nth-of-type(2)')?.textContent || '';
+    fig.append(img, cap);
+    sec.append(fig);
+  });
+  document.body.append(sec);
+})();

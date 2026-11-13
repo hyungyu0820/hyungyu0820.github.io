@@ -607,3 +607,28 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 
 /* 카드 아래 두께와 그림자가 다음 섹션에 잘리지 않게 */
 .section.insight { padding-bottom: 72px; }
+
+/* 캠퍼스볼트 설문 포스터 (작게) */
+.posters { display: grid; grid-template-columns: 120px 120px 1fr; gap: 14px; align-items: center; }
+.posters img { aspect-ratio: 210 / 297; object-fit: cover; }
+.posters-note { font-size: .84rem; color: rgba(255, 255, 255, .7); }
+@media (max-width: 640px) { .posters { grid-template-columns: 1fr 1fr; } .posters-note { grid-column: 1 / -1; } }
+
+/* PDF·인쇄: 누르면 커지는 자료를 뒤쪽 부록에 크게 싣는다 */
+.print-appendix { display: none; }
+@media print {
+  @page { size: A4; margin: 12mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+  .nav, .to-top, .lightbox, .scroll-cue, #copy-mail { display: none !important; }
+  .hero { min-height: 0 !important; height: auto !important; padding-top: 40px; padding-bottom: 40px; }
+  .award, .case-steps .step, .eng-card, figure, .note, .stats { break-inside: avoid; }
+  .slides-note::after, .posters-note::after { content: " (PDF에서는 문서 끝 부록에 크게 실었습니다.)"; }
+  .print-appendix { display: block; background: #fff; color: #111; padding: 0; break-before: page; }
+  .print-appendix h2 { font-size: 16pt; margin: 0 0 4mm; break-after: avoid; }
+  .print-appendix > p { font-size: 9pt; color: #555; margin-bottom: 6mm; }
+  .print-appendix figure { break-inside: avoid; margin: 0 0 8mm; text-align: center; }
+  .print-appendix figure.tall { break-before: page; }
+  .print-appendix img { max-width: 100%; max-height: 235mm; width: auto; height: auto; border: 1px solid #ccc; }
+  .print-appendix figcaption { font-size: 9pt; color: #333; margin-top: 2mm; }
+}
