@@ -628,7 +628,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
   .print-appendix h2 { font-size: 16pt; margin: 0 0 4mm; break-after: avoid; }
   .print-appendix > p { font-size: 9pt; color: #555; margin-bottom: 6mm; }
   .print-appendix figure { break-inside: avoid; margin: 0 0 8mm; text-align: center; }
-  .print-appendix figure.tall { break-before: page; }
-  .print-appendix img { max-width: 100%; max-height: 235mm; width: auto; height: auto; border: 1px solid #ccc; }
+  .print-appendix .grid { display: flex; flex-wrap: wrap; gap: 6mm 4%; align-items: flex-start; }
+  .print-appendix figure { width: 100%; }
+  .print-appendix figure.tall { width: 48%; }
+  .print-appendix figure.phone { width: 30.6%; }
+  .print-appendix img { max-width: 100%; max-height: 120mm; width: auto; height: auto; border: 1px solid #ccc; }
+  .print-appendix figure.tall img { max-height: 125mm; }
   .print-appendix figcaption { font-size: 9pt; color: #333; margin-top: 2mm; }
 }
